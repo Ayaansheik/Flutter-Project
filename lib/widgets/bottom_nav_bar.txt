@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+
+class AnimatedBottomNavBar extends StatefulWidget {
+  @override
+  _AnimatedBottomNavBarState createState() => _AnimatedBottomNavBarState();
+}
+
+class _AnimatedBottomNavBarState extends State<AnimatedBottomNavBar> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/cart');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/all-products');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/register');
+        break;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart),
+          label: 'Cart',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.food_bank),
+          label: 'Menu',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle),
+          label: 'Account',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      selectedItemColor: Colors.green,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+    );
+  }
+}
